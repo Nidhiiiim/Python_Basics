@@ -15,9 +15,13 @@ def Cube(n):
 try:
     n = int(input("Provide number you want cube of: "))
     print(Cube(n))
+    #x = 100/0
 # will catch any kind of exception
-except:
+except ZeroDivisionError:
+    print("Divided by 0")
+except ValueError:
     print("Invalid Input")
+
 
 
 def Min_fx(arr):
@@ -25,10 +29,14 @@ def Min_fx(arr):
 
 
 arr = []
-s = int(input("Provide size of List: "))
-print("Provide list of elements: ")
-for i in range(0, s):
-    a = int(input())
-    arr.append(a)
+try:
+    s = int(input("Provide size of List: "))
+    print("Provide list of elements: ")
+    for i in range(0, s):
+        a = int(input())
+        arr.append(a)
+except ValueError:
+    print("Invalid input")
+
 
 print("Min is: " + str(Min_fx(arr)))

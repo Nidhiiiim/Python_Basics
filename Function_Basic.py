@@ -12,8 +12,12 @@ def Cube(n):
     return n * n * n
 
 
-n = int(input("Provide number you want cube of: "))
-print(Cube(n))
+try:
+    n = int(input("Provide number you want cube of: "))
+    print(Cube(n))
+# will catch any kind of exception
+except:
+    print("Invalid Input")
 
 
 def Min_fx(arr):

@@ -1,7 +1,7 @@
 import io
 
-# Problem Stated Clearly
-# There is set of cards arranged in decreasing order upside down, Alice wants bob to pick a particular card with minimum attempts.
+# Problem Stated Clearly There is set of cards arranged in decreasing order upside down.
+# Alice wants bob to pick a particular card with minimum attempts.
 
 # Inputs
 # Cards
@@ -27,27 +27,21 @@ Cards = []
 Target_Number = 10
 Output = 3
 
-test = {
-    # All function arguments
-    'input': {
-        'Cards': [14, 11, 10, 9, 8, 7, 6, 2, 0],
-        'Target_Number': 10
-    },
-    'output': 2
-}
-
 
 # 1) Brute Force Solution
 def locate_Card(Cards, Target_Number):
-    position = 0
-    while True:
-        # Check if element is at this position
-        if Cards[position] == Target_Number:
-            return position
-        position += 1
+    try:
+        position = 0
+        while True:
+            # Check if element is at this position
+            if Cards[position] == Target_Number:
+                return position
+            position += 1
 
-        if position == len(Cards):
-            return -1
+            if position == len(Cards):
+                return -1
+    except IndexError as e:
+        print(f"An IndexError occurred: {e}")
 
 
 # List all possible test cases
@@ -60,15 +54,16 @@ def locate_Card(Cards, Target_Number):
 # 7) The number is more than once
 tests = []
 
-tests.append(test)
-tests.append({
+test = {
     # All function arguments
     'input': {
         'Cards': [14, 11, 10, 9, 8, 7, 6, 2, 0],
         'Target_Number': 10
     },
     'output': 2
-})
+}
+
+tests.append(test)
 
 tests.append({
     # All function arguments
@@ -132,13 +127,18 @@ tests.append({
     },
     'output': 2
 })
-print(tests)
 
-result = locate_Card(test['input']['Cards'], test['input']['Target_Number'])
-output = test['output']
+for test in tests:
+    result = locate_Card(test['input']['Cards'], test['input']['Target_Number'])
+    output = test['output']
 
-# CONFIRMING THE ANSWER
-print(result == output)
+    # CONFIRMING THE ANSWER
+    if output == result:
+        print("PASS")
+        print("Brute Force O/P \n Cards: ", test['input']['Cards'], "Target: ", test['input']['Target_Number'],
+              "Output: ", test['output'])
+    else:
+        print("FAILED")
 
 
 # Brute force method complexity O(n)
@@ -159,8 +159,15 @@ def binary_card_locate(Cards, Target_Number):
     return -1
 
 
-binary_result = binary_card_locate(test['input']['Cards'], test['input']['Target_Number'])
-binary_output = test['output']
+print(tests)
 
-# CONFIRMING THE ANSWER
-print(binary_result == binary_output)
+for test in tests:
+    binary_result = binary_card_locate(test['input']['Cards'], test['input']['Target_Number'])
+    binary_output = test['output']
+
+    if binary_output == binary_result:
+        print("PASS")
+        print("--Binary Search O/P -- \n Cards: ", test['input']['Cards'], "Target: ", test['input']['Target_Number'],
+              "Output: ", test['output'])
+    else:
+        print("FAILED")
